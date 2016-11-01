@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<nlog
+	xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd"
+	autoReload="true"
+	throwExceptions="false"
+	internalLogLevel="Off" internalLogFile="c:\temp\nlog-internal.log" >
+
+	<variable name="ArchiveDirectory" value="${basedir}/Archives"/>
+	<variable name="LogDirectory" value="${basedir}/Logs/${shortdate}"/>
+
+	<targets>
+		<wrapper-target xsi:type="AsyncWrapper">
+			<!--<target name="Target1" xsi:type="File" fileName="LogFile.txt" archiveEvery="Day"/>-->
+
+			<target name="Target1" xsi:type="File"
+				encoding="utf-8"
+				keepFileOpen="false"
+				concurrentWrites="false"
+
+				layout="${longdate}|${level:uppercase=true}|${logger}|${message}"
+				fileName="${LogDirectory}/Logs/Log.txt"
+
+				archiveEvery="Day"
+				maxArchiveFiles="7"
+				archiveNumbering="Rolling"
+				archiveFileName="${basedir}/Archives/Log.{#}.txt"
+				/>
+		</wrapper-target>
+	</targets>
+
+	<rules>
+		<logger name="*" minlevel="Trace" writeTo="Target1"/>
+	</rules>
+</nlog>
