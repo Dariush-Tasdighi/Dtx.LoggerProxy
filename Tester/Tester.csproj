@@ -56,7 +56,10 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="NLog.config" />
+    <None Include="NLog.config.8" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NLog.config.1" />
     <None Include="NLog.config.2" />
     <None Include="NLog.config.3" />
@@ -73,9 +76,6 @@
       <Project>{41fd0df3-a42a-4b61-8e0b-508c45acf418}</Project>
       <Name>Dtx.LoggerProxy</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

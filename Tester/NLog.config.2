@@ -5,10 +5,12 @@
 	xsi:schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd"
 	autoReload="true"
 	throwExceptions="false"
-	internalLogLevel="Off" internalLogFile="c:\temp\nlog-internal.log" >
+	internalLogLevel="Trace"
+	internalLogFile="C:\TEMP\NLog-Internal.log"
+	>
 
 	<targets>
-		<target name="Target1" xsi:type="File" fileName="File1.txt"/>
+		<target name="Target1" xsi:type="File" fileName="LogFile.txt"/>
 	</targets>
 
 	<rules>

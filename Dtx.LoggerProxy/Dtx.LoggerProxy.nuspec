@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Dtx.LoggerProxy</id>
+    <version>1.0.1</version>
+    <title>Dtx.LoggerProxy Library</title>
+    <authors>Dariush Tasdighi</authors>
+    <owners>Dariush Tasdighi</owners>
+    <licenseUrl>https://creativecommons.org/licenses/by-nc-nd/4.0/</licenseUrl>
+    <projectUrl>https://github.com/Dariush-Tasdighi/Dtx.LoggerProxy</projectUrl>
+	 <iconUrl>http://www.iranianexperts.com/content/images/dtx.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A very useful proxy for using NLog. You can use it! But if you want to use another logger such as Log4Net, you can change just LoggerProxy! not all of your applications.</description>
+    <releaseNotes>This is the first release!</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>C# Log Logger NLog Proxy Library Persian Iranian Iran</tags>
+	<dependencies>
+      <dependency id="NLog" version="4.3.10" />
+    </dependencies>
+  </metadata>
+</package>

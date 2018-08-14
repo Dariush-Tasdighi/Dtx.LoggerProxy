@@ -8,23 +8,23 @@
 
 		private static string GetErrorMessage(System.Exception exception)
 		{
-			System.Text.StringBuilder oResult = new System.Text.StringBuilder();
+			System.Text.StringBuilder result = new System.Text.StringBuilder();
 
-			System.Exception oException = exception;
+			System.Exception currentException = exception;
 
-			while (oException != null)
+			while (currentException != null)
 			{
-				if (oResult.Length != 0)
+				if (result.Length != 0)
 				{
-					oResult.Append(" - ");
+					result.Append(" - ");
 				}
 
-				oResult.Append(oException.Message);
+				result.Append(currentException.Message);
 
-				oException = oException.InnerException;
+				currentException = currentException.InnerException;
 			}
 
-			return (oResult.ToString());
+			return (result.ToString());
 		}
 
 		public static void Log
@@ -42,120 +42,120 @@
 		private static void Log
 			(LogLevels level, System.Type type, string message, System.Exception exception = null, System.Collections.Hashtable parameters = null)
 		{
-			System.Text.StringBuilder oResult = new System.Text.StringBuilder();
+			System.Text.StringBuilder result = new System.Text.StringBuilder();
 
 			if ((System.Web.HttpContext.Current != null) &&
 				(System.Web.HttpContext.Current.Request != null))
 			{
-				string strUserHostAddress =
+				string userHostAddress =
 					System.Web.HttpContext.Current.Request.UserHostAddress;
 
-				if (string.IsNullOrEmpty(strUserHostAddress) == false)
+				if (string.IsNullOrWhiteSpace(userHostAddress) == false)
 				{
-					oResult.Append(string.Format("<ip>{0}</ip>", strUserHostAddress));
+					result.Append(string.Format("<ip>{0}</ip>", userHostAddress));
 				}
 
-				string strAbsoluteUri =
+				string absoluteUri =
 					System.Web.HttpContext.Current.Request.Url.AbsoluteUri;
 
-				if (string.IsNullOrEmpty(strAbsoluteUri) == false)
+				if (string.IsNullOrWhiteSpace(absoluteUri) == false)
 				{
-					oResult.Append(string.Format("<absoluteUri>{0}</absoluteUri>", strAbsoluteUri));
+					result.Append(string.Format("<absoluteUri>{0}</absoluteUri>", absoluteUri));
 				}
 
-				string strHttpReferer =
+				string httpReferer =
 					System.Web.HttpContext.Current.Request.ServerVariables["HTTP_REFERER"];
 
-				if (string.IsNullOrEmpty(strHttpReferer) == false)
+				if (string.IsNullOrWhiteSpace(httpReferer) == false)
 				{
-					oResult.Append(string.Format("<httpReferer>{0}</httpReferer>", strHttpReferer));
+					result.Append(string.Format("<httpReferer>{0}</httpReferer>", httpReferer));
 				}
 			}
 
 			if (exception == null)
 			{
-				oResult.Append(string.Format("<message>{0}</message>", message));
+				result.Append(string.Format("<message>{0}</message>", message));
 			}
 			else
 			{
-				oResult.Append(string.Format("<errorMessages>{0}</errorMessages>", GetErrorMessage(exception)));
+				result.Append(string.Format("<errorMessages>{0}</errorMessages>", GetErrorMessage(exception)));
 			}
 
 			if ((parameters != null) && (parameters.Count != 0))
 			{
-				oResult.Append("<parameters>");
+				result.Append("<parameters>");
 
-				foreach (System.Collections.DictionaryEntry oEntry in parameters)
+				foreach (System.Collections.DictionaryEntry currentEntry in parameters)
 				{
-					if (oEntry.Key != null)
+					if (currentEntry.Key != null)
 					{
-						oResult.Append("<parameter>");
+						result.Append("<parameter>");
 
-						oResult.Append("<key>");
-						oResult.Append(oEntry.Key);
-						oResult.Append("</key>");
+						result.Append("<key>");
+						result.Append(currentEntry.Key);
+						result.Append("</key>");
 
-						oResult.Append("<value>");
-						if (oEntry.Value == null)
+						result.Append("<value>");
+						if (currentEntry.Value == null)
 						{
-							oResult.Append("NULL");
+							result.Append("NULL");
 						}
 						else
 						{
-							oResult.Append(oEntry.Value);
+							result.Append(currentEntry.Value);
 						}
-						oResult.Append("</value>");
+						result.Append("</value>");
 
-						oResult.Append("</parameter>");
+						result.Append("</parameter>");
 					}
 				}
 
-				oResult.Append("</parameters>");
+				result.Append("</parameters>");
 			}
 
-			NLog.Logger oLogger =
-				NLog.LogManager.GetLogger(type.ToString());
+			NLog.Logger logger =
+				NLog.LogManager.GetLogger(name: type.ToString());
 
 			switch (level)
 			{
 				case LogLevels.Trace:
 				{
-					oLogger.Trace(exception: exception, message: oResult.ToString());
+					logger.Trace(exception, message: result.ToString());
 
 					break;
 				}
 
 				case LogLevels.Debug:
 				{
-					oLogger.Debug(exception: exception, message: oResult.ToString());
+					logger.Debug(exception, message: result.ToString());
 
 					break;
 				}
 
 				case LogLevels.Info:
 				{
-					oLogger.Info(exception: exception, message: oResult.ToString());
+					logger.Info(exception, message: result.ToString());
 
 					break;
 				}
 
 				case LogLevels.Warn:
 				{
-					oLogger.Warn(exception: exception, message: oResult.ToString());
+					logger.Warn(exception, message: result.ToString());
 
 					break;
 				}
 
 				case LogLevels.Error:
 				{
-					oLogger.Error(exception: exception, message: oResult.ToString());
+					logger.Error(exception, message: result.ToString());
 
 					break;
 				}
 
 				case LogLevels.Fatal:
 				{
-					oLogger.Fatal(exception: exception, message: oResult.ToString());
+					logger.Fatal(exception, message: result.ToString());
 
 					break;
 				}

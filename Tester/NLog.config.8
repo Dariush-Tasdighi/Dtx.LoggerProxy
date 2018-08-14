@@ -14,12 +14,17 @@
 	<targets>
 		<target
 			name="Target1"
+
 			xsi:type="File"
 			encoding="utf-8"
+			autoFlush="true"
 			createDirs="true"
+			lineEnding="CRLF"
 
+			deleteOldFileOnStartup="false"
+			
 			archiveEvery="Minute"
-			archiveNumbering="DateAndSequence"
+			archiveNumbering="Sequence"
 
 			keepFileOpen="false"
 			concurrentWrites="false"

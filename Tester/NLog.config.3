@@ -5,15 +5,17 @@
 	xsi:schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd"
 	autoReload="true"
 	throwExceptions="false"
-	internalLogLevel="Off" internalLogFile="c:\temp\nlog-internal.log" >
+	internalLogLevel="Trace"
+	internalLogFile="C:\TEMP\NLog-Internal.log"
+	>
 
 	<targets>
-		<target name="Target1" xsi:type="File" fileName="File1.txt"/>
-		<target name="Target2" xsi:type="File" fileName="File2.txt"/>
-		<target name="Target3" xsi:type="File" fileName="File3.txt"/>
-		<target name="Target4" xsi:type="File" fileName="File4.txt"/>
-		<target name="Target5" xsi:type="File" fileName="File5.txt"/>
-		<target name="Target6" xsi:type="File" fileName="File6.txt"/>
+		<target name="Target1" xsi:type="File" fileName="LogFile01.txt"/>
+		<target name="Target2" xsi:type="File" fileName="LogFile02.txt"/>
+		<target name="Target3" xsi:type="File" fileName="LogFile03.txt"/>
+		<target name="Target4" xsi:type="File" fileName="LogFile04.txt"/>
+		<target name="Target5" xsi:type="File" fileName="LogFile05.txt"/>
+		<target name="Target6" xsi:type="File" fileName="LogFile06.txt"/>
 	</targets>
 
 	<!--<rules>

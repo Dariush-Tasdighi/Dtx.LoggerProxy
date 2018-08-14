@@ -15,17 +15,18 @@
 			// **************************************************
 
 			// **************************************************
-			MainForm frmMain = new MainForm();
-			System.Windows.Forms.Application.Run(frmMain);
+			MainForm startupForm = new MainForm();
 
-			if (frmMain != null)
+			System.Windows.Forms.Application.Run(startupForm);
+
+			if (startupForm != null)
 			{
-				if (frmMain.IsDisposed == false)
+				if (startupForm.IsDisposed == false)
 				{
-					frmMain.Dispose();
+					startupForm.Dispose();
 				}
 
-				frmMain = null;
+				startupForm = null;
 			}
 			// **************************************************
 		}

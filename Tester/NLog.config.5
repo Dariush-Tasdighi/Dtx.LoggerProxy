@@ -5,11 +5,13 @@
 	xsi:schemaLocation="http://www.nlog-project.org/schemas/NLog.xsd NLog.xsd"
 	autoReload="true"
 	throwExceptions="false"
-	internalLogLevel="Off" internalLogFile="c:\temp\nlog-internal.log" >
+	internalLogLevel="Trace"
+	internalLogFile="C:\TEMP\NLog-Internal.log"
+	>
 
 	<targets>
 		<wrapper-target xsi:type="AsyncWrapper">
-			<target name="Target1" xsi:type="File" fileName="File1.txt" archiveEvery="Day"/>
+			<target name="Target1" xsi:type="File" fileName="File21.txt" archiveEvery="Day"/>
 			<target name="Target2" xsi:type="Mail" addNewLines="true" deliveryMethod="Network" enableSsl="false" encoding="utf-8" html="true" priority="" useSystemNetMailSettings="false" smtpUserName="" smtpPassword="" smtpAuthentication="Basic" smtpPort="25" smtpServer="" to=""/>
 		</wrapper-target>
 	</targets>
