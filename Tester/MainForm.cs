@@ -29,39 +29,41 @@
 				(Dtx.LoggerProxy.LogLevel.Fatal, GetType(), "Fatal...");
 			// **************************************************
 
-			//try
-			//{
-			//	// ...
-			//}
-			//catch (System.Exception ex)
-			//{
-			//	Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevel.Error, typeof(MainForm), exception: ex);
-			//}
-
-			//System.Exception exception;
-
 			// **************************************************
-			//exception = new System.Exception(message: "Error Message (1)!");
-			//Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevels.Error, GetType(), exception: exception);
+			try
+			{
+				// ...
+			}
+			catch (System.Exception ex)
+			{
+				Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevel.Error, typeof(MainForm), exception: ex);
+			}
 			// **************************************************
 
-			// **************************************************
-			//System.Exception innerException = new System.Exception(message: "Error Message (2)!");
-			//exception = new System.Exception(message: "Error Message (1)!", innerException: innerException);
+			System.Exception exception;
 
-			//Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevels.Error, GetType(), exception: exception);
+			// **************************************************
+			exception = new System.Exception(message: "Error Message (1)!");
+			Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevel.Error, GetType(), exception: exception);
 			// **************************************************
 
 			// **************************************************
-			//System.Collections.Hashtable keyList = new System.Collections.Hashtable();
+			System.Exception innerException = new System.Exception(message: "Error Message (2)!");
+			exception = new System.Exception(message: "Error Message (1)!", innerException: innerException);
 
-			////list.Add(null, null);
-			////list.Add(null, "Value1");
-			//keyList.Add("Key1", null);
-			//keyList.Add("Key2", "Value2");
-			//keyList.Add("Key3", "Value3");
+			Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevel.Error, GetType(), exception: exception);
+			// **************************************************
 
-			//Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevels.Error, GetType(), exception: exception, parameters: keyList);
+			// **************************************************
+			System.Collections.Hashtable keyList = new System.Collections.Hashtable();
+
+			//list.Add(null, null);
+			//list.Add(null, "Value1");
+			keyList.Add("Key1", null);
+			keyList.Add("Key2", "Value2");
+			keyList.Add("Key3", "Value3");
+
+			Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevel.Error, GetType(), exception: exception, parameters: keyList);
 			// **************************************************
 		}
 	}

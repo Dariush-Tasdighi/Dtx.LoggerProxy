@@ -53,7 +53,6 @@
 				if (string.IsNullOrWhiteSpace(userHostAddress) == false)
 				{
 					result.Append($"<ip>{ userHostAddress }</ip>");
-					//result.Append(string.Format("<ip>{0}</ip>", userHostAddress));
 				}
 
 				System.Uri Uri =
@@ -66,7 +65,6 @@
 					if (string.IsNullOrWhiteSpace(absoluteUri) == false)
 					{
 						result.Append($"<absoluteUri>{ absoluteUri }</absoluteUri>");
-						//result.Append(string.Format("<absoluteUri>{0}</absoluteUri>", absoluteUri));
 					}
 				}
 
@@ -80,7 +78,6 @@
 					if (string.IsNullOrWhiteSpace(httpReferrer) == false)
 					{
 						result.Append($"<httpReferrer>{ httpReferrer }</httpReferrer>");
-						//result.Append(string.Format("<httpReferrer>{0}</httpReferrer>", httpReferrer));
 					}
 				}
 			}
@@ -88,13 +85,11 @@
 			if (string.IsNullOrWhiteSpace(message) == false)
 			{
 				result.Append($"<message>{ message }</message>");
-				//result.Append(string.Format("<message>{0}</message>", message));
 			}
 
 			if (exception != null)
 			{
 				result.Append($"<errorMessages>{ GetErrorMessage(exception) }</errorMessages>");
-				//result.Append(string.Format("<errorMessages>{0}</errorMessages>", GetErrorMessage(exception)));
 			}
 
 			if ((parameters != null) && (parameters.Count != 0))
@@ -107,20 +102,16 @@
 					{
 						result.Append("<parameter>");
 
-						result.Append("<key>");
-						result.Append(currentEntry.Key);
-						result.Append("</key>");
+						result.Append($"<key>{ currentEntry.Key }</key>");
 
-						result.Append("<value>");
 						if (currentEntry.Value == null)
 						{
-							result.Append("NULL");
+							result.Append($"<value>NULL</value>");
 						}
 						else
 						{
-							result.Append(currentEntry.Value);
+							result.Append($"<value>{ currentEntry.Value }</value>");
 						}
-						result.Append("</value>");
 
 						result.Append("</parameter>");
 					}
