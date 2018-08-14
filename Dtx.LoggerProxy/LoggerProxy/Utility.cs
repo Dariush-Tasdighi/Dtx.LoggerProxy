@@ -28,19 +28,19 @@
 		}
 
 		public static void Log
-			(LogLevels level, System.Type type, string message, System.Collections.Hashtable parameters = null)
+			(LogLevel level, System.Type type, string message, System.Collections.Hashtable parameters = null)
 		{
 			Log(level: level, type: type, message: message, exception: null, parameters: parameters);
 		}
 
 		public static void Log
-			(LogLevels level, System.Type type, System.Exception exception, System.Collections.Hashtable parameters = null)
+			(LogLevel level, System.Type type, System.Exception exception, System.Collections.Hashtable parameters = null)
 		{
 			Log(level: level, type: type, message: string.Empty, exception: exception, parameters: parameters);
 		}
 
 		private static void Log
-			(LogLevels level, System.Type type, string message, System.Exception exception = null, System.Collections.Hashtable parameters = null)
+			(LogLevel level, System.Type type, string message, System.Exception exception = null, System.Collections.Hashtable parameters = null)
 		{
 			System.Text.StringBuilder result = new System.Text.StringBuilder();
 
@@ -52,33 +52,49 @@
 
 				if (string.IsNullOrWhiteSpace(userHostAddress) == false)
 				{
-					result.Append(string.Format("<ip>{0}</ip>", userHostAddress));
+					result.Append($"<ip>{ userHostAddress }</ip>");
+					//result.Append(string.Format("<ip>{0}</ip>", userHostAddress));
 				}
 
-				string absoluteUri =
-					System.Web.HttpContext.Current.Request.Url.AbsoluteUri;
+				System.Uri Uri =
+					System.Web.HttpContext.Current.Request.Url;
 
-				if (string.IsNullOrWhiteSpace(absoluteUri) == false)
+				if (Uri != null)
 				{
-					result.Append(string.Format("<absoluteUri>{0}</absoluteUri>", absoluteUri));
+					string absoluteUri = Uri.AbsoluteUri;
+
+					if (string.IsNullOrWhiteSpace(absoluteUri) == false)
+					{
+						result.Append($"<absoluteUri>{ absoluteUri }</absoluteUri>");
+						//result.Append(string.Format("<absoluteUri>{0}</absoluteUri>", absoluteUri));
+					}
 				}
 
-				string httpReferer =
-					System.Web.HttpContext.Current.Request.ServerVariables["HTTP_REFERER"];
+				System.Uri uriReferrer =
+					System.Web.HttpContext.Current.Request.UrlReferrer;
 
-				if (string.IsNullOrWhiteSpace(httpReferer) == false)
+				if (uriReferrer != null)
 				{
-					result.Append(string.Format("<httpReferer>{0}</httpReferer>", httpReferer));
+					string httpReferrer = uriReferrer.AbsolutePath;
+
+					if (string.IsNullOrWhiteSpace(httpReferrer) == false)
+					{
+						result.Append($"<httpReferrer>{ httpReferrer }</httpReferrer>");
+						//result.Append(string.Format("<httpReferrer>{0}</httpReferrer>", httpReferrer));
+					}
 				}
 			}
 
-			if (exception == null)
+			if (string.IsNullOrWhiteSpace(message) == false)
 			{
-				result.Append(string.Format("<message>{0}</message>", message));
+				result.Append($"<message>{ message }</message>");
+				//result.Append(string.Format("<message>{0}</message>", message));
 			}
-			else
+
+			if (exception != null)
 			{
-				result.Append(string.Format("<errorMessages>{0}</errorMessages>", GetErrorMessage(exception)));
+				result.Append($"<errorMessages>{ GetErrorMessage(exception) }</errorMessages>");
+				//result.Append(string.Format("<errorMessages>{0}</errorMessages>", GetErrorMessage(exception)));
 			}
 
 			if ((parameters != null) && (parameters.Count != 0))
@@ -118,42 +134,42 @@
 
 			switch (level)
 			{
-				case LogLevels.Trace:
+				case LogLevel.Trace:
 				{
 					logger.Trace(exception, message: result.ToString());
 
 					break;
 				}
 
-				case LogLevels.Debug:
+				case LogLevel.Debug:
 				{
 					logger.Debug(exception, message: result.ToString());
 
 					break;
 				}
 
-				case LogLevels.Info:
+				case LogLevel.Info:
 				{
 					logger.Info(exception, message: result.ToString());
 
 					break;
 				}
 
-				case LogLevels.Warn:
+				case LogLevel.Warn:
 				{
 					logger.Warn(exception, message: result.ToString());
 
 					break;
 				}
 
-				case LogLevels.Error:
+				case LogLevel.Error:
 				{
 					logger.Error(exception, message: result.ToString());
 
 					break;
 				}
 
-				case LogLevels.Fatal:
+				case LogLevel.Fatal:
 				{
 					logger.Fatal(exception, message: result.ToString());
 

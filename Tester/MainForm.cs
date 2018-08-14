@@ -11,23 +11,32 @@
 		{
 			// **************************************************
 			Dtx.LoggerProxy.Utility.Log
-				(Dtx.LoggerProxy.LogLevels.Trace, GetType(), "Trace...");
+				(Dtx.LoggerProxy.LogLevel.Trace, GetType(), "Trace...");
 
 			Dtx.LoggerProxy.Utility.Log
-				(Dtx.LoggerProxy.LogLevels.Debug, GetType(), "Debug...");
+				(Dtx.LoggerProxy.LogLevel.Debug, GetType(), "Debug...");
 
 			Dtx.LoggerProxy.Utility.Log
-				(Dtx.LoggerProxy.LogLevels.Info, GetType(), "Info...");
+				(Dtx.LoggerProxy.LogLevel.Info, GetType(), "Info...");
 
 			Dtx.LoggerProxy.Utility.Log
-				(Dtx.LoggerProxy.LogLevels.Warn, GetType(), "Warn...");
+				(Dtx.LoggerProxy.LogLevel.Warn, GetType(), "Warn...");
 
 			Dtx.LoggerProxy.Utility.Log
-				(Dtx.LoggerProxy.LogLevels.Error, GetType(), "Error...");
+				(Dtx.LoggerProxy.LogLevel.Error, GetType(), "Error...");
 
 			Dtx.LoggerProxy.Utility.Log
-				(Dtx.LoggerProxy.LogLevels.Fatal, GetType(), "Fatal...");
+				(Dtx.LoggerProxy.LogLevel.Fatal, GetType(), "Fatal...");
 			// **************************************************
+
+			//try
+			//{
+			//	// ...
+			//}
+			//catch (System.Exception ex)
+			//{
+			//	Dtx.LoggerProxy.Utility.Log(Dtx.LoggerProxy.LogLevel.Error, typeof(MainForm), exception: ex);
+			//}
 
 			//System.Exception exception;
 

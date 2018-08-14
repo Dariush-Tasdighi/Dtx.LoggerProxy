@@ -1,6 +1,6 @@
 ﻿namespace Dtx.LoggerProxy
 {
-	public enum LogLevels : int
+	public enum LogLevel : int
 	{
 		Trace = 0,
 		Debug = 1,

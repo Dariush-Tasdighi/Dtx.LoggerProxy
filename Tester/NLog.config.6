@@ -23,13 +23,13 @@
 				keepFileOpen="false"
 				concurrentWrites="false"
 
-				fileName="${LogDirectory}/Logs/Log.txt"
+				fileName="${LogDirectory}/Log.txt"
 				layout="${longdate}|${level:uppercase=true}|${logger}|${message}"
 
 				archiveEvery="Day"
 				maxArchiveFiles="7"
 				archiveNumbering="Rolling"
-				archiveFileName="${basedir}/Archives/Log.{#}.txt"
+				archiveFileName="${ArchiveDirectory}/Log.{#}.txt"
 				/>
 		</wrapper-target>
 	</targets>
